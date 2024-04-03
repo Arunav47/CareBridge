@@ -1,3 +1,4 @@
+import 'package:carebridge/home/homepage.dart';
 import 'package:carebridge/utils/validator/validator.dart';
 import 'package:carebridge/widgets/customElevatedButton/custom_elevated_button.dart';
 import 'package:carebridge/widgets/customTextButton/custom_text_button.dart';
@@ -63,7 +64,9 @@ class _LoginState extends State<Login> {
                     ),
                     SizedBox(height: height*0.04,),
                     CustomElevatedButton(
-                      onPressed: (){}, 
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageScreen()));
+                      }, 
                       child: const Text("Login"),
                     ),
                     Row(
