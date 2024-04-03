@@ -13,11 +13,20 @@ class _HomePageScreenState extends State<HomePageScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-        child: ,),
       appBar: AppBar(
+        leading: Container(
+          margin: EdgeInsets.only(left: 4),
+          padding: EdgeInsets.all(4),
+          child: CircleAvatar(
+            radius: 10,
+            child: Image(image: AssetImage("assets/logo.png")),
+          ),
+        ),
         title: Text("CareBridge"),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.medication))
+        ],
       ),
       body: SizedBox(
         width: width,
@@ -32,7 +41,25 @@ class _HomePageScreenState extends State<HomePageScreen> {
             )
           ],
         ),
+
       ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: 0,
+      //   items: [
+
+      //   ],
+        
+      //   ),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.cyan,
+        selectedItemColor: Colors.green[700],
+    items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Appointment'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopify), label: 'Shop'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+    ],
+  ),
     );
   }
 }

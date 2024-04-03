@@ -20,19 +20,17 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
 
     super.initState();
-    // if(user != null)
-    // {
-    //   Future.delayed(Duration(seconds: 3), (){
-    //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Auth()));
-    //  });
-    // }
     splashScreen.isLogin(context);
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("HealthCare App"),
+        child: Container(
+          height: 300,
+          width: 300,
+          child: Image(image: AssetImage("assets/logo.png")),
+        )
       ),
     );
   }
