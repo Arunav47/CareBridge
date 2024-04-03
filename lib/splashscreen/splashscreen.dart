@@ -1,9 +1,4 @@
-import 'dart:async';
-
-import 'package:carebridge/auth/auth.dart';
-import 'package:carebridge/home/homepage.dart';
 import 'package:carebridge/splashscreen/splashservices.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

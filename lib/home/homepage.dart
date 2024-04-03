@@ -19,8 +19,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
   int currentindex = 0;
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[700],

@@ -1,11 +1,9 @@
 import 'package:carebridge/controllers/auth_controller.dart';
 import 'package:carebridge/home/homepage.dart';
-import 'package:carebridge/utils/utils.dart';
 import 'package:carebridge/utils/validator/validator.dart';
 import 'package:carebridge/widgets/customElevatedButton/custom_elevated_button.dart';
 import 'package:carebridge/widgets/customTextButton/custom_text_button.dart';
 import 'package:carebridge/widgets/customTextField/custom_text_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
