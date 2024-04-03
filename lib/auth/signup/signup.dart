@@ -1,3 +1,4 @@
+import 'package:carebridge/controllers/auth_controller.dart';
 import 'package:carebridge/home/homepage.dart';
 import 'package:carebridge/utils/utils.dart';
 import 'package:carebridge/utils/validator/validator.dart';
@@ -6,6 +7,8 @@ import 'package:carebridge/widgets/customTextButton/custom_text_button.dart';
 import 'package:carebridge/widgets/customTextField/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class SignUp extends StatefulWidget {
   final void Function() onTapSignUp;
@@ -19,21 +22,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-
-   FirebaseAuth _auth = FirebaseAuth.instance;
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-  }
+  var formKey = GlobalKey<FormState>();
   bool obscurePassword = true;
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AuthController());
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -45,18 +38,31 @@ class _SignUpState extends State<SignUp> {
             Container(
               width: width,
               child: Form(
+                key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 30),
+                      alignment: Alignment.topLeft,
+                      child: Text("Login", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                    SizedBox(height: height*0.04,),
                     CustomTextField(
-                      controller: _emailController,
+                      controller: controller.fullNameController,
+                      label: "Full Name",
+                      validator: Validator.isEmpty,
+                      prefixIcon: Icons.person
+                    ),
+                    SizedBox(height: height*0.04,),
+                    CustomTextField(
+                      controller: controller.emailController,
                       label: "Email",
                       validator: Validator.isEmailValid,
                       prefixIcon: Icons.email
                     ),
                     SizedBox(height: height*0.04,),
                     CustomTextField(
-                      controller: _passwordController,
+                      controller: controller.passwordController,
                       label: "Password",
                       validator: Validator.isPasswordValid,
                       prefixIcon: Icons.lock,
@@ -70,13 +76,9 @@ class _SignUpState extends State<SignUp> {
                     SizedBox(height: height*0.04,),
                     CustomElevatedButton(
                       onPressed: (){
-                        _auth.createUserWithEmailAndPassword(email: _emailController.text.toString(), 
-                        password: _passwordController.text.toString()).then((value){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageScreen()));
-                          }).onError((error, stackTrace){
-                            utils().showMessage(error.toString());
-                          });
-                      }, 
+                        if(formKey.currentState!.validate())
+                          controller.signupUser();
+                        }, 
                       child: const Text("Sign Up"),
                     ),
                     Row(

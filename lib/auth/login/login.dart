@@ -48,6 +48,11 @@ class _LoginState extends State<Login> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 30),
+                      alignment: Alignment.topLeft,
+                      child: Text("Login", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                    SizedBox(height: height*0.04,),
                     CustomTextField(
                       controller: _emailController,
                       label: "Email",
