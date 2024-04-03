@@ -1,3 +1,4 @@
+import 'package:carebridge/utils/utils.dart';
 import 'package:carebridge/utils/validator/validator.dart';
 import 'package:carebridge/widgets/customElevatedButton/custom_elevated_button.dart';
 import 'package:carebridge/widgets/customTextButton/custom_text_button.dart';
@@ -70,7 +71,9 @@ class _SignUpState extends State<SignUp> {
                       onPressed: (){
                         _auth.createUserWithEmailAndPassword(email: _emailController.text.toString(), 
                         password: _passwordController.text.toString()).then((value){
-                          }).onError((error, stackTrace){});
+                          }).onError((error, stackTrace){
+                            utils().showMessage(error.toString());
+                          });
                       }, 
                       child: const Text("Sign Up"),
                     ),
