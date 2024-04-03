@@ -1,7 +1,10 @@
+import 'package:carebridge/home/homepage.dart';
+import 'package:carebridge/utils/utils.dart';
 import 'package:carebridge/utils/validator/validator.dart';
 import 'package:carebridge/widgets/customElevatedButton/custom_elevated_button.dart';
 import 'package:carebridge/widgets/customTextButton/custom_text_button.dart';
 import 'package:carebridge/widgets/customTextField/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -18,6 +21,9 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -63,7 +69,15 @@ class _LoginState extends State<Login> {
                     ),
                     SizedBox(height: height*0.04,),
                     CustomElevatedButton(
-                      onPressed: (){}, 
+                      onPressed: (){
+                        _auth.signInWithEmailAndPassword(email: _emailController.text.toString(),
+                         password: _passwordController.text.toString()).then((value){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageScreen()));
+                         }).onError((error, stackTrace)
+                         {utils().showMessage(error.toString());}
+                         );
+
+                      }, 
                       child: const Text("Login"),
                     ),
                     Row(
