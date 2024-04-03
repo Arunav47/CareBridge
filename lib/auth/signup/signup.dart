@@ -45,7 +45,7 @@ class _SignUpState extends State<SignUp> {
                     Container(
                       padding: EdgeInsets.only(left: 30),
                       alignment: Alignment.topLeft,
-                      child: Text("Login", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                      child: Text("Sign Up", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
                     SizedBox(height: height*0.04,),
                     CustomTextField(
                       controller: controller.fullNameController,
@@ -75,9 +75,11 @@ class _SignUpState extends State<SignUp> {
                     ),
                     SizedBox(height: height*0.04,),
                     CustomElevatedButton(
-                      onPressed: (){
-                        if(formKey.currentState!.validate())
+                      onPressed: () async{
+                        if(formKey.currentState!.validate()) {
                           controller.signupUser();
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePageScreen()));
+                        }
                         }, 
                       child: const Text("Sign Up"),
                     ),

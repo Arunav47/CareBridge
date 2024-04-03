@@ -23,4 +23,7 @@ class AuthController extends GetxController{
       'email' : email
     });
   }
+  signout() async{
+    await FirebaseAuth.instance.signOut();
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:carebridge/home/widgets/home.dart';
+import 'package:carebridge/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
     HomeScreen(),
     HomeScreen(),
     HomeScreen(),
-    HomeScreen(),
+    ProfileScreen(),
   ];
   int currentindex = 0;
   @override
