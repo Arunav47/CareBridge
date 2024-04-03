@@ -1,3 +1,4 @@
+import 'package:carebridge/home/homepage.dart';
 import 'package:carebridge/utils/utils.dart';
 import 'package:carebridge/utils/validator/validator.dart';
 import 'package:carebridge/widgets/customElevatedButton/custom_elevated_button.dart';
@@ -71,6 +72,7 @@ class _SignUpState extends State<SignUp> {
                       onPressed: (){
                         _auth.createUserWithEmailAndPassword(email: _emailController.text.toString(), 
                         password: _passwordController.text.toString()).then((value){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageScreen()));
                           }).onError((error, stackTrace){
                             utils().showMessage(error.toString());
                           });
