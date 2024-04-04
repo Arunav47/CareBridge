@@ -76,8 +76,8 @@ class _LoginState extends State<Login> {
                       SizedBox(height: height*0.04,),
                       CustomElevatedButton(
                         onPressed: () async{
-                          controller.login();
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePageScreen()));
+                          controller.login(context);
+                          
                         }, 
                         child: const Text("Login"),
                       ),

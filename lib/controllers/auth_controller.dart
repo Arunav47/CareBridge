@@ -1,3 +1,4 @@
+import 'package:carebridge/home/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,8 @@ class AuthController extends GetxController{
       'email' : email
     });
   }
-  login() async{
-    await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+  login(BuildContext context) async{
+    await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).then((value) {Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePageScreen()));});
   }
   signout() async{
     await FirebaseAuth.instance.signOut();
