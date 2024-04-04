@@ -22,6 +22,9 @@ class AuthController extends GetxController{
       'email' : email
     });
   }
+  login() async{
+    await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+  }
   signout() async{
     await FirebaseAuth.instance.signOut();
   }

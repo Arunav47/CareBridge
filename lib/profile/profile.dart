@@ -1,5 +1,6 @@
 import 'package:carebridge/auth/auth.dart';
 import 'package:carebridge/controllers/auth_controller.dart';
+import 'package:carebridge/profile/widgets/prescriptions.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -21,6 +22,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             title: Text("Username"),
             subtitle: Text("useremail@gmail.com")
+          ),
+          ListTile(
+            leading: Icon(Icons.note),
+            title: Text("Prescriptions"),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Prescription()));
+            },
           ),
           ListTile(
             leading: Icon(Icons.logout),

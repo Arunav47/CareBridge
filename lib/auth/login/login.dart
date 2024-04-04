@@ -1,3 +1,4 @@
+import 'package:carebridge/controllers/auth_controller.dart';
 import 'package:carebridge/utils/utils.dart';
 import 'package:carebridge/home/homepage.dart';
 import 'package:carebridge/utils/validator/validator.dart';
@@ -6,6 +7,7 @@ import 'package:carebridge/widgets/customTextButton/custom_text_button.dart';
 import 'package:carebridge/widgets/customTextField/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
   final void Function() onTapSignUp;
@@ -21,9 +23,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-
   FirebaseAuth _auth = FirebaseAuth.instance;
-
   @override
   void dispose() {
     // TODO: implement dispose
@@ -34,6 +34,7 @@ class _LoginState extends State<Login> {
   bool obscurePassword = true;
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AuthController());
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -54,14 +55,14 @@ class _LoginState extends State<Login> {
                       child: Text("Login", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
                     SizedBox(height: height*0.04,),
                     CustomTextField(
-                      controller: _emailController,
+                      controller: controller.emailController,
                       label: "Email",
                       validator: Validator.isEmailValid,
                       prefixIcon: Icons.email
                     ),
                     SizedBox(height: height*0.04,),
                     CustomTextField(
-                      controller: _passwordController,
+                      controller: controller.passwordController,
                       label: "Password",
                       validator: Validator.isPasswordValid,
                       prefixIcon: Icons.lock,
@@ -74,14 +75,9 @@ class _LoginState extends State<Login> {
                     ),
                     SizedBox(height: height*0.04,),
                     CustomElevatedButton(
-                      onPressed: (){
-                        _auth.signInWithEmailAndPassword(email: _emailController.text.toString(),
-                         password: _passwordController.text.toString()).then((value){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePageScreen()));
-                         }).onError((error, stackTrace)
-                         {utils().showMessage(error.toString());}
-                         );
-
+                      onPressed: () async{
+                        controller.login();
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePageScreen()));
                       }, 
                       child: const Text("Login"),
                     ),
