@@ -1,6 +1,7 @@
 import 'package:carebridge/auth/auth.dart';
 import 'package:carebridge/controllers/auth_controller.dart';
 import 'package:carebridge/profile/widgets/prescriptions.dart';
+import 'package:carebridge/profile/widgets/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -17,6 +18,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         children: [
           ListTile(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfilePage()));
+            },
             leading: CircleAvatar(
               child: Image(image: AssetImage("assets/logo.png")),
             ),

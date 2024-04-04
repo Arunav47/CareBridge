@@ -1,3 +1,4 @@
+import 'package:carebridge/widgets/customTextField/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -10,6 +11,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[700],
@@ -26,6 +29,21 @@ class _ProfilePageState extends State<ProfilePage> {
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.shopify, color: Colors.cyan,))
         ],
+      ),
+      body: Container(
+        width: width,
+        child: Form(
+          child: Column(
+            children: [
+              CustomTextField(
+                label: "User Name",
+              ),
+              CustomTextField(
+                label: "Email",
+              )
+            ],
+          )
+          )
       ),
     );
   }
