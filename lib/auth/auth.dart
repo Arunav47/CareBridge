@@ -26,10 +26,29 @@ class _AuthState extends State<Auth> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Column(
+      children: [
+        Expanded(
+          child: Container(
+              width: width,
+              color: Theme.of(context).scaffoldBackgroundColor,
+              height: height*0.3,
+              child: Image(image: AssetImage('assets/logo.png'),),
+            ),
+        ),
+        Expanded(
+          flex: 2,
+          child: PageView(
+            physics: const NeverScrollableScrollPhysics(),
       controller: pageController,
       children: [
-        Container(),
+        Container(
+          height: height*0.7,
+          color: Theme.of(context).scaffoldBackgroundColor,
+          width: width,
+        ),
         Login(
           onTapSignUp: () {
             pageController.animateToPage(
@@ -48,7 +67,15 @@ class _AuthState extends State<Auth> {
             );
           },
         ),
-        Container(),
+        Container(
+          height: height*0.7,
+          color: Theme.of(context).scaffoldBackgroundColor,
+          width: width,
+        ),
+      ],
+    )
+        
+        )
       ],
     );
   }
