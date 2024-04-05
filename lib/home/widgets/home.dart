@@ -1,3 +1,4 @@
+import 'package:carebridge/breathing_exercise/breathing_exercise.dart';
 import 'package:carebridge/cancer_detection/cancer_detection.dart';
 import 'package:carebridge/diagnose%20ai/diagnose_ai.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -53,6 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisSpacing: 10),
                 children: [
                   InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>BreathingPractice()));
+                    },
                     child: Card(
                       child: Container(
                         height: height * 0.2,
@@ -62,10 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Container(
                               height: height*0.15,
-                              child: Image(image: AssetImage('assets/oncology.png'))),
-                            Text("Cancer Detection")
-                            
-                            ],
+                              child: Image(image: AssetImage('assets/breathing.png'))),
+                            Text("Breathing Practice")  
+                          ],
                         ),
                       ),
                     ),
@@ -127,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Container(
                               height: height*0.15,
                               child: Image(image: AssetImage('assets/detection.png'))),
-                            Text("Cancer Detection")
+                            Text("Disease Detection")
                             
                             ],
                         ),

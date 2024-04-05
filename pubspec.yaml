@@ -46,6 +46,7 @@ dependencies:
   http: ^1.2.1
   dash_chat_2: ^0.0.20
   chat_gpt_sdk: ^3.0.4
+  lottie: ^3.1.0
   
 dev_dependencies:
   flutter_test:
@@ -83,6 +84,8 @@ flutter:
     - assets\car1.jpeg
     - assets\oncology.png
     - assets\detection.png
+    - assets\xvEoTtb4Pg.json
+    - assets\breathing.png
     
 
 
