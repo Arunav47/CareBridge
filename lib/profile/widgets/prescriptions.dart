@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Prescription extends StatefulWidget {
   const Prescription({super.key});
@@ -8,6 +11,14 @@ class Prescription extends StatefulWidget {
 }
 
 class _PrescriptionState extends State<Prescription> {
+  File? selectedImage;
+
+  Future getImage() async{
+    final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+    selectedImage = File(pickedImage!.path);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +38,9 @@ class _PrescriptionState extends State<Prescription> {
           IconButton(onPressed: (){}, icon: Icon(Icons.shopify, color: Colors.cyan,))
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){}, child: Icon(Icons.add),),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        getImage();
+      }, child: Icon(Icons.add),),
     );
   }
 }

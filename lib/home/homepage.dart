@@ -4,6 +4,7 @@ import 'package:carebridge/appointment/category.dart';
 import 'package:carebridge/bookedAppoinments/bookedAppointments.dart';
 import 'package:carebridge/home/widgets/home.dart';
 import 'package:carebridge/profile/profile.dart';
+import 'package:carebridge/shop/shop.dart';
 import 'package:flutter/material.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -16,9 +17,8 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
   List<Widget> screens = [
     HomeScreen(),
-    // BookedAppointments(),
     Category(),
-    BookedAppointments(),
+    MedicineShop(),
     ProfileScreen(),
   ];
   int currentindex = 0;
@@ -56,7 +56,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Appointment'),
-          // BottomNavigationBarItem(icon: Icon(Icons.book_online), label: 'Book Appointment'),
           BottomNavigationBarItem(icon: Icon(Icons.shopify), label: 'Shop'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
     ],

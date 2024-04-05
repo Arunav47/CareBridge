@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     InkWell(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>DiagnoseAi()));
                       },
                       child: Card(
                         child: Container(
