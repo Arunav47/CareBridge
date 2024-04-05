@@ -53,7 +53,7 @@ class _BreathingPracticeState extends State<BreathingPractice> {
         child: Icon(Icons.play_arrow),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Color(0xFF2D7A78),
         leading: Container(
           margin: EdgeInsets.only(left: 4),
           padding: EdgeInsets.all(4),
@@ -62,7 +62,7 @@ class _BreathingPracticeState extends State<BreathingPractice> {
             child: Image(image: AssetImage("assets/logo.png")),
           ),
         ),
-        title: Text("CareBridge"),
+        title: Text("Breathing Practice", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
         centerTitle: true,
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.shopify, color: Colors.cyan,))

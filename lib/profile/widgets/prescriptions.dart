@@ -33,24 +33,19 @@ class _PrescriptionState extends State<Prescription> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Color(0xFF2D7A78),
         leading: Container(
-          margin: const EdgeInsets.only(left: 4),
-          padding: const EdgeInsets.all(4),
+          margin: EdgeInsets.only(left: 4),
+          padding: EdgeInsets.all(4),
           child: CircleAvatar(
             radius: 10,
             child: Image(image: AssetImage("assets/logo.png")),
           ),
         ),
-        title: Text("CareBridge"),
+        title: Text("CareBridge", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
         centerTitle: true,
         actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.shopify,
-                color: Colors.cyan,
-              ))
+          IconButton(onPressed: (){}, icon: Icon(Icons.shopify, color: Colors.cyan,))
         ],
       ),
       body: _buildUI(),

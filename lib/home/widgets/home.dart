@@ -1,6 +1,7 @@
 import 'package:carebridge/breathing_exercise/breathing_exercise.dart';
 import 'package:carebridge/cancer_detection/cancer_detection.dart';
 import 'package:carebridge/diagnose%20ai/diagnose_ai.dart';
+import 'package:carebridge/prescriboai/prescribo_ai.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -74,6 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   InkWell(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>PrescriboAi()));
+                    },
                     child: Card(
                       child: Container(
                         child: Column(
@@ -81,8 +85,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Container(
                               height: height*0.15,
-                              child: Image(image: AssetImage('assets/oncology.png'))),
-                            Text("Cancer Detection")
+                              child: Image(image: AssetImage('assets/prescription.png'))),
+                            Text("PrescriboAi")
                             
                             ],
                         ),

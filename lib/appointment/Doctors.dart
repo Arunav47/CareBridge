@@ -20,7 +20,7 @@ class Doctors extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
             appBar: AppBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Color(0xFF2D7A78),
         leading: Container(
           margin: EdgeInsets.only(left: 4),
           padding: EdgeInsets.all(4),
@@ -29,7 +29,7 @@ class Doctors extends StatelessWidget {
             child: Image(image: AssetImage("assets/logo.png")),
           ),
         ),
-        title: Text("Available Doctors"),
+        title: Text("Available Doctors", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
         centerTitle: true,
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.shopify, color: Colors.cyan,))
@@ -59,7 +59,7 @@ class Doctors extends StatelessWidget {
                   Container(
                     
                     alignment: Alignment.center,
-                    color: Colors.green[700],
+                    color: Colors.cyan,
                     child: Image.asset( "assets/icons/doc.png", width:100, fit: BoxFit.cover),
                   ),
                   SizedBox(height: 5,),

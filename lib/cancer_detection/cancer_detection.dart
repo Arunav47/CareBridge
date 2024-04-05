@@ -39,7 +39,7 @@ class _CancerDetectionScreenState extends State<CancerDetectionScreen> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Color(0xFF2D7A78),
         leading: Container(
           margin: EdgeInsets.only(left: 4),
           padding: EdgeInsets.all(4),
@@ -48,7 +48,7 @@ class _CancerDetectionScreenState extends State<CancerDetectionScreen> {
             child: Image(image: AssetImage("assets/logo.png")),
           ),
         ),
-        title: Text("CareBridge"),
+        title: Text("CareBridge", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
         centerTitle: true,
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.shopify, color: Colors.cyan,))

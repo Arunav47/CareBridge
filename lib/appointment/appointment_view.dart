@@ -10,8 +10,9 @@ class AppointmentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-                  appBar: AppBar(
-        backgroundColor: Colors.green[700],
+                  appBar: 
+      AppBar(
+        backgroundColor: Color(0xFF2D7A78),
         leading: Container(
           margin: EdgeInsets.only(left: 4),
           padding: EdgeInsets.all(4),
@@ -20,9 +21,11 @@ class AppointmentView extends StatelessWidget {
             child: Image(image: AssetImage("assets/logo.png")),
           ),
         ),
-        title: Text("Your Appointments"),
+        title: Text("Your Appointments", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
         centerTitle: true,
-
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.shopify, color: Colors.cyan,))
+        ],
       ),
 
       body: Padding(

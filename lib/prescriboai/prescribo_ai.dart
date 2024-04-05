@@ -1,23 +1,23 @@
 import 'dart:convert';
+
 import 'package:carebridge/widgets/customTextField/custom_text_field.dart';
-import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class DiagnoseAi extends StatefulWidget {
-  const DiagnoseAi({super.key});
+class PrescriboAi extends StatefulWidget {
+  const PrescriboAi({super.key});
 
   @override
-  State<DiagnoseAi> createState() => _DiagnoseAiState();
+  State<PrescriboAi> createState() => _PrescriboAiState();
 }
 
-class _DiagnoseAiState extends State<DiagnoseAi> {
+class _PrescriboAiState extends State<PrescriboAi> {
   TextEditingController promptController = TextEditingController();
-  String diagnose = "";
-
+  String prescription = "";
   Future<void> sendProductDescription(String name, String notes) async {
     final String url =
-        'https://0a1a-14-139-217-140.ngrok-free.app/product_description';
+        'https://0a1a-14-139-217-140.ngrok-free.app/prescription';
 
     Map<String, dynamic> productData = {
       'name': name,
@@ -35,7 +35,7 @@ class _DiagnoseAiState extends State<DiagnoseAi> {
       );
       if (response.statusCode == 200) {
         final resJson = jsonDecode(response.body);
-        diagnose = resJson['product_description'];
+        prescription = resJson['prescription'];
         setState(() {});
       } else {
         print(
@@ -46,11 +46,9 @@ class _DiagnoseAiState extends State<DiagnoseAi> {
     }
   }
 
-  List<Map<String, dynamic>> messagesList = <Map<String, dynamic>>[];
-  List<ChatMessage> chatMessagesList = <ChatMessage>[];
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
@@ -86,7 +84,7 @@ class _DiagnoseAiState extends State<DiagnoseAi> {
                       IconButton(
                           onPressed: () async {
                             sendProductDescription(
-                                promptController.text, "cough");
+                                promptController.text, "with dosage");
                           },
                           icon: Icon(Icons.send))
                     ],
@@ -95,11 +93,10 @@ class _DiagnoseAiState extends State<DiagnoseAi> {
                 Container(
                     padding: EdgeInsets.only(left: 10, top: 10),
                     width: width,
-                    child: Text("Diagnoses: ${diagnose}")),
+                    child: Text("Prescription: $prescription")),
               ],
             ),
           ),
         ));
   }
 }
-
