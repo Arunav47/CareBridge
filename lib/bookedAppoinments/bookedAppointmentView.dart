@@ -38,32 +38,23 @@ class AppointmentView extends StatelessWidget {
                 SizedBox(height: 10,),
                 CustomTextField(label:"Select day"),
                 SizedBox(height: 15,),
-                Text("Select appointment time",style: TextStyle(fontWeight: FontWeight.bold),),
+                Text("Select appointment day",style: TextStyle(fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
-                CustomTextField(label:"Select Time"),
+                Text("Selected day"),
                 SizedBox(height: 15,),
                 Text("Your phone number",style: TextStyle(fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
-                CustomTextField(label:"Phone number"),
+                Text("Phone number"),
                 SizedBox(height: 15,),
                 Text("Your Name",style: TextStyle(fontWeight: FontWeight.bold),),
                 SizedBox(height: 10,),
-                CustomTextField(label:"Enter Your Name"),
+                Text("Enter your name",)
 
               ],
             ),
           ],
         ),
       ),
-
-              floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            Navigator.pop(context); // Navigate to previous page
-          },
-          label: Text('Book your appointment'),
-          icon: Icon(Icons.arrow_back),
-          backgroundColor: Colors.green[700],
-        ),
     );
   }
 }
