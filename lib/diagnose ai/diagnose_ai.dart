@@ -46,8 +46,6 @@ class _DiagnoseAiState extends State<DiagnoseAi> {
     }
   }
 
-  List<Map<String, dynamic>> messagesList = <Map<String, dynamic>>[];
-  List<ChatMessage> chatMessagesList = <ChatMessage>[];
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
