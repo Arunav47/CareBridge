@@ -78,6 +78,11 @@ flutter:
     - assets\icons\liver.png
     - assets\icons\lungs.png
     - assets\icons\doc.png
+    - assets\car3.jpg
+    - assets\car2.jpg
+    - assets\car1.jpeg
+    - assets\oncology.png
+    - assets\detection.png
     
 
 
