@@ -1,3 +1,5 @@
+import 'package:carebridge/cancer_detection/cancer_detection.dart';
+import 'package:carebridge/diagnose%20ai/diagnose_ai.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -51,6 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CancerDetectionScreen()));
+                      },
                       child: Card(
                         child: Container(
                           height: height*0.2,
@@ -59,6 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>DiagnoseAi()));
+                      },
                       child: Card(
                         child: Container(
                           height: height*0.2,
@@ -72,7 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-
       );
   }
 }
