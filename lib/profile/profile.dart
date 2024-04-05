@@ -2,7 +2,10 @@ import 'package:carebridge/auth/auth.dart';
 import 'package:carebridge/controllers/auth_controller.dart';
 import 'package:carebridge/profile/widgets/prescriptions.dart';
 import 'package:carebridge/profile/widgets/profile_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+String? email = FirebaseAuth.instance.currentUser!.email;
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -24,8 +27,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             leading: CircleAvatar(
               child: Image(image: AssetImage("assets/logo.png")),
             ),
-            title: Text("Username"),
-            subtitle: Text("useremail@gmail.com")
+            title: Text("User Profile"),
+            subtitle: Text(email!)
           ),
           ListTile(
             leading: Icon(Icons.note),
