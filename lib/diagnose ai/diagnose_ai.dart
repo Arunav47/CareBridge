@@ -13,10 +13,6 @@ class DiagnoseAi extends StatefulWidget {
 }
 
 class _DiagnoseAiState extends State<DiagnoseAi> {
-
-  final ChatUser _currentUser = ChatUser(id: '1', firstName: 'Guest');
-  final ChatUser _gptChatUser = ChatUser(id: '2', firstName: 'ChatGPT');
-
   TextEditingController promptController = TextEditingController();
   String diagnose = "";
 
@@ -38,7 +34,8 @@ class _DiagnoseAiState extends State<DiagnoseAi> {
       body: jsonData,
     );
     if (response.statusCode == 200) {
-      diagnose = response.body;
+      final resJson = jsonDecode(response.body);
+      diagnose = resJson['product_description'];
       setState(() {
       });
     } else {
