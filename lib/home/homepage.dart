@@ -1,3 +1,5 @@
+import 'package:carebridge/appointment/appointment.dart';
+import 'package:carebridge/appointment/category.dart';
 import 'package:carebridge/home/widgets/home.dart';
 import 'package:carebridge/profile/profile.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,7 @@ class HomePageScreen extends StatefulWidget {
 class _HomePageScreenState extends State<HomePageScreen> {
   List<Widget> screens = [
     HomeScreen(),
-    HomeScreen(),
+    Category(),
     HomeScreen(),
     ProfileScreen(),
   ];
