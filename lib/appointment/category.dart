@@ -1,4 +1,4 @@
-import 'package:carebridge/appointment/category_details.dart';
+import 'package:carebridge/appointment/Doctors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,7 +42,7 @@ class _CategoryState extends State<Category> {
                                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const categoryDetails()));
+                                    builder: (context) => const Doctors()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
