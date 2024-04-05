@@ -44,6 +44,8 @@ dependencies:
   get:
   image_picker: ^1.0.7
   http: ^1.2.1
+  dash_chat_2: ^0.0.20
+  chat_gpt_sdk: ^3.0.4
   
 dev_dependencies:
   flutter_test:

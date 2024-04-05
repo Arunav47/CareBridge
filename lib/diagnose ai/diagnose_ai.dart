@@ -1,6 +1,7 @@
 import 'dart:convert';
-
 import 'package:carebridge/widgets/customTextField/custom_text_field.dart';
+import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
+import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,24 +13,21 @@ class DiagnoseAi extends StatefulWidget {
 }
 
 class _DiagnoseAiState extends State<DiagnoseAi> {
+
+  final _openAI = OpenAI.instance.build(
+    token: '', 
+    baseOption: HttpSetup(receiveTimeout: const Duration(seconds: 5)),
+    enableLog: true
+  );
+
+  final ChatUser _currentUser = ChatUser(id: '1', firstName: 'Guest');
+  final ChatUser _gptChatUser = ChatUser(id: '2', firstName: 'ChatGPT');
+
   TextEditingController promptController = TextEditingController();
   String diagnose = "";
 
-  postPrompt(String issue) async {
-    final response = await http.post(
-      Uri.parse('https://7f67-2409-40e6-11-4776-6c36-8d03-ad00-bd02.ngrok-free.app/diagnose/'),
-      body: {'issue_request': issue},
-    );
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      diagnose = data["diagnoses"];
-      setState(() {});
-    }
-  }
 Future<void> sendDiagnosisRequest(String issue) async {
-  final String apiUrl = 'https://ce63-2409-40e6-11-4776-6c36-8d03-ad00-bd02.ngrok-free.app/diagnose/'; // Replace with your FastAPI endpoint URL
-  
+  final String apiUrl = 'https://9829-2401-4900-3a68-68ad-5400-7d53-3ca4-c20d.ngrok-free.app/diagnose/'; 
   final Map<String, String> headers = {
     'Content-Type': 'application/json',
   };
@@ -46,21 +44,68 @@ Future<void> sendDiagnosisRequest(String issue) async {
     );
 
     if (response.statusCode == 200) {
-      // Request successful
       final data = jsonDecode(response.body);
       Map<String, dynamic> diagnose = data;
-      // Handle the diagnoses data as needed
       print('Diagnoses: ${diagnose.entries.first.value}');
     } else {
-      // Request failed
       print('Request failed with status: ${response.statusCode}');
     }
   } catch (e) {
-    // Exception occurred
     print('Error occurred: $e');
   }
 }
 
+  Future<void> getResponse(String s) async {
+    final prompt = s;
+    if(prompt.isNotEmpty){
+      print(await callChatGPT(prompt));
+    }
+  }
+  Future<String?> callChatGPT(String prompt) async {
+    const apiKey = "";
+    const apiUrl = "https://api.openai.com/v1/chat/completions";
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $apiKey'
+    };
+    final body = jsonEncode(
+      {
+        "model": "gpt-3.5-turbo",
+        "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a helpful assistant that tells diseases from symptoms"
+                },
+                {
+                    "role" : "user",
+                    "content":  "I am having $prompt what disease i whight be suffering from?"// note the removal of quotes
+                }
+            ],
+        "max_tokens": 10,
+      }
+    );
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: headers,
+        body: body
+      );
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        final result = jsonResponse['choices'][0]['text'];
+        return result.trim();
+      }
+      else{
+        return "Failed to call ChatGPT API: ${response.statusCode}";
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+
+  List<Map<String, dynamic>> messagesList = <Map<String, dynamic>>[];
+  List<ChatMessage> chatMessagesList = <ChatMessage>[];
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -88,32 +133,67 @@ Future<void> sendDiagnosisRequest(String issue) async {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 10, left: 10),
         width: width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                CustomTextField(
-                  label: "Enter your Issue",
-                  controller: promptController,
+        child: Form(
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomTextField(
+                      label: "Enter your issue",
+                      controller: promptController,
+                    ),
+                    IconButton(
+                      onPressed: () async{
+                        getResponse(promptController.text);
+                      }, 
+                      icon: Icon(Icons.send))
+                  ],
                 ),
-                IconButton(
-                    onPressed: (){
-                      // postPrompt(promptController.text);
-                      sendDiagnosisRequest(promptController.text);
-                      },
-                    icon: Icon(Icons.send))
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              alignment: Alignment.topLeft,
-              child: Text("Diagnose : $diagnose"))
-          ],
+              ),
+              Text("Diagnoses: ${diagnose}"),
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
+
+  // Future<void> getChatResponse(ChatMessage m) async {
+  //   setState(() {
+  //     messagesList.insert(0, {'user': m.user, 'content': 'I am having ${m.text}. Can you please tell me the disease i might be suffering from based on the symptoms?'});
+  //     chatMessagesList.insert(0, m);
+  //   });
+  //   List<Map<String, dynamic>> messageHistory = messagesList.reversed.map((e) {
+  //     if(e['user'] == _currentUser){
+  //       return e;
+  //     }
+  //     else {
+  //       return e;
+  //     }
+  //   }).toList();
+  //   final request = ChatCompleteText(
+  //     model: GptTurbo0301ChatModel(), 
+  //     messages: messageHistory,
+  //     maxToken: 100
+  //   );
+  //   final response = await _openAI.onChatCompletion(request: request);
+  //   for(var element in response!.choices) {
+  //     if(element.message != null) {
+  //       setState(() {
+  //         chatMessagesList.insert(
+  //           0, 
+  //           ChatMessage(
+  //             user: _gptChatUser, 
+  //             createdAt: DateTime.now(), 
+  //             text: element.message!.content)
+  //           );
+  //       });
+  //     }
+  //   }
+  // }
+
 }

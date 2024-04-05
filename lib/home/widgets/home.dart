@@ -1,4 +1,5 @@
 import 'package:carebridge/cancer_detection/cancer_detection.dart';
+import 'package:carebridge/chat/chat.dart';
 import 'package:carebridge/diagnose%20ai/diagnose_ai.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     InkWell(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>DiagnoseAi()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatScreen()));
                       },
                       child: Card(
                         child: Container(
