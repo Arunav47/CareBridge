@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Container(
                               height: height*0.15,
                               child: Image(image: AssetImage('assets/prescription.png'))),
-                            Text("PrescriboAi")
+                            Text("PrescriboAI")
                             
                             ],
                         ),
@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Container(
                               height: height*0.15,
                               child: Image(image: AssetImage('assets/detection.png'))),
-                            Text("Disease Detection")
+                            Text("DiagnosisAI")
                             
                             ],
                         ),
