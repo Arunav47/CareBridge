@@ -1,6 +1,6 @@
-# carebridge
+# CareBridge
 
-A new Flutter project.
+A project to to provide healthcare accessibility to the rural population
 
 ## Getting Started
 
